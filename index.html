@@ -1,0 +1,188 @@
+<html lang="es">
+  <head>
+    <title>Web Project Around</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Proyecto 7, web project around" />
+    <meta name="author" content="Natalia Tovar" />
+    <meta name="keywords" content="Responsive, HTML, CSS" />
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="images/header_logo_svg.svg"
+          alt="Around The U.S. logo"
+        />
+        <img
+          class="header__line"
+          src="images/header_line.png"
+          alt="Division line"
+        />
+      </header>
+
+      <main class="content">
+        <section class="profile">
+          <img
+            class="profile__image"
+            src="images/profile_image.jpg"
+            alt="Jacques Cousteau image"
+          />
+          <div class="profile__info">
+            <h1 class="profile__info_name">Jacques Cousteau</h1>
+            <a href="#"
+              ><img
+                class="profile__info_edit-button"
+                src="images/profile_edit_button.svg"
+                alt="Pencil icon, referencing you can edit"
+            /></a>
+            <p class="profile__info_description">Explorador</p>
+          </div>
+          <button class="profile__add-button">
+            <img src="images/icon_add.svg" />
+          </button>
+        </section>
+
+        <!-- Inicio formulario pop up-->
+        <div class="popup">
+          <form class="form">
+            <h2 class="form__title">Editar perfil</h2>
+            <input
+              class="form__text-input form__text-input_name"
+              type="text"
+              placeholder="Nombre"
+            />
+            <input
+              class="form__text-input form__text-input_description"
+              type="text"
+              placeholder="Acerca de mi"
+            />
+            <button class="form__submit" type="submit">Guardar</button>
+            <button class="popup__close" type="button">
+              <img
+                src="images/icon_close.svg"
+                alt="X icon to close the form."
+              />
+            </button>
+          </form>
+        </div>
+
+        <!-- Fin formulario pop up -->
+
+        <section class="elements">
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_valle_yosemite.jpg"
+              alt="Photo of Valle de Yosemite"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Valle de Yosemite</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_lago_louise.jpg"
+              alt="Photo of Lago Louise"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Lago Louise</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_montañas_calvas.jpg"
+              alt="Photo of Montañas Calvas"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Montañas Calvas</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_latermar.jpg"
+              alt="Photo of Latemar"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Latemar</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_vanoise.jpg"
+              alt="Photo of Vanoise National Park"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Vanois National Park</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+          <div class="elements__card">
+            <img
+              class="card__image"
+              src="images/card_image_lago_di_braies.jpg"
+              alt="Photo of Lago di Braies"
+            />
+            <div class="card__content">
+              <p class="card__content_text">Lago di Braies</p>
+              <a href="#"
+                ><img
+                  class="card__content_like"
+                  src="images/icon_heart.svg"
+                  alt="Heart icon"
+                />
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyright">© 2024 Around The U.S.</p>
+      </footer>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

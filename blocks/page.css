@@ -1,0 +1,22 @@
+.page {
+  font-family: "inter";
+  background-color: black;
+  min-width: 320px;
+  margin: auto;
+}
+
+body {
+  background-color: black;
+}
+
+/* @media screen and (max-width: 1000px) {
+  .page {
+    max-width: 1000px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 786px) {
+  .page {
+    max-width: 768px;
+  }
+} */

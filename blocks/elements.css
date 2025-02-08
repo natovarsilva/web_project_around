@@ -1,0 +1,75 @@
+.elements {
+  max-width: 880px;
+  margin: auto;
+  display: grid;
+  row-gap: 17px;
+  column-gap: 20px;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto auto;
+}
+.elements__card {
+  width: 282px;
+  height: 361px;
+  object-fit: cover;
+  background-color: white;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.card__image {
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+  width: 282px;
+  height: 282px;
+}
+
+.card__content {
+  background-color: white;
+  display: inline;
+  position: relative;
+}
+
+.card__content_text {
+  font-size: 24px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 200px;
+  padding-left: 25px;
+}
+
+.card__content_like {
+  position: absolute;
+  right: 20px;
+  bottom: 5;
+}
+
+.card__content_like:hover {
+  color: (0, 0, 0, 1);
+}
+
+@media screen and (max-width: 1000px) {
+  .elements {
+    max-width: 768px;
+    margin: auto;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: auto auto;
+  }
+}
+
+@media screen and (max-width: 680px) and (min-width: 320px) {
+  .elements {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile__info_name {
+    font-size: 22px;
+    font-weight: 500px;
+  }
+  .profile__info_description {
+    font-size: 14px;
+    font-weight: 400px;
+  }
+}
