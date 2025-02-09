@@ -25,7 +25,6 @@
 
 .card__content {
   background-color: white;
-  display: inline;
   position: relative;
 }
 
@@ -41,12 +40,13 @@
 
 .card__content_like {
   position: absolute;
+  background-color: transparent;
   right: 20px;
-  bottom: 5;
+  bottom: 5px;
 }
 
 .card__content_like:hover {
-  color: (0, 0, 0, 1);
+  color: rgb(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 1000px) {
@@ -66,10 +66,10 @@
 
   .profile__info_name {
     font-size: 22px;
-    font-weight: 500px;
+    font-weight: 500;
   }
   .profile__info_description {
     font-size: 14px;
-    font-weight: 400px;
+    font-weight: 400;
   }
 }

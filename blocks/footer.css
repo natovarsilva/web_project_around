@@ -12,3 +12,9 @@
   font-size: 18px;
   max-width: 880px;
 }
+
+@media screen and (max-width: 1000px) {
+  .footer__copyright {
+    width: 318px;
+  }
+}
