@@ -66,8 +66,11 @@
 
 @media screen and (max-width: 1000px) {
   .profile {
-    margin: 50px 5%;
+    margin: 50px 8%;
   }
+  /* .profile__info {
+    text-align: center;
+  } */
 }
 
 @media screen and (max-width: 680px) {
@@ -76,6 +79,10 @@
     margin: auto;
     align-items: center;
     max-width: 680px;
+  }
+
+  .profile__info {
+    text-align: center;
   }
 
   .profile__info_description {

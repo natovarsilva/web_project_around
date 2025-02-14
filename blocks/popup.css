@@ -68,3 +68,19 @@
 .popup_opened {
   display: flex;
 }
+
+@media screen and (max-width: 450px) {
+  .form {
+    width: 282px;
+    height: 322px;
+  }
+  .form__title {
+    width: 50vw;
+  }
+  .form__text-input {
+    width: 50vw;
+  }
+  .form__submit {
+    width: 50vw;
+  }
+}
