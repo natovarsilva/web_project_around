@@ -1,29 +1,123 @@
 const editButton = document.querySelector(".profile__info_edit-button");
-const popup = document.querySelector(".popup");
-const formInputName = document.querySelector(".form__text-input_name");
+const popupProfile = document.querySelector("#popup-profile");
+const formInputName = document.querySelector("#input-profile-name");
 const formInputDesc = document.querySelector(".form__text-input_description");
 const profileName = document.querySelector(".profile__info-name");
 const profileDesc = document.querySelector(".profile__info_description");
 const formProfile = document.querySelector(".form");
-const popupCloseButton = document.querySelector(".popup__close");
+const popupProfileCloseButton = document.querySelector("#popup-profile-close");
+const newPlaceTemplate = document.querySelector("#newplace-template");
+const cardsContainer = document.querySelector(".elements");
+const popupNewPlace = document.querySelector("#popup-new-place");
+const createNewPlaceButton = document.querySelector(".profile__add-button");
+const popupNewPlaceCloseButton = document.querySelector(
+  "#popup-newplace-close"
+);
+const inputPlaceName = document.querySelector("#input-place-name");
+const inputPlaceImage = document.querySelector("#input-place-image");
+const formNewPlace = document.querySelector("#form-new-place");
+const deleteCard = document.querySelector(".card__trash"); //eliminar tarjeta?
+const popupImage = document.querySelector(".popup__image");
+const popupImageClose = document.querySelector("#popup-image-close");
 
 function handleOpenPopup() {
-  popup.classList.add("popup_opened");
+  popupProfile.classList.add("popup_opened");
 }
 
-function closePopup() {
-  popup.classList.remove("popup_opened");
+function closePopupProfile() {
+  popupProfile.classList.remove("popup_opened");
 }
 
 function handleChangeProfile(evt) {
   evt.preventDefault();
   profileName.textContent = formInputName.value;
   profileDesc.textContent = formInputDesc.value;
-  popup.classList.remove("popup_opened");
+  popupProfile.classList.remove("popup_opened");
 }
+
+const initialCards = [
+  {
+    name: "Valle de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+  {
+    name: "Montañas Calvas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    name: "Parque Nacional de la Vanoise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+  },
+];
+
+function cardsInitials() {
+  initialCards.forEach((item) => {
+    createNewplace(item.name, item.link);
+  });
+}
+
+function createNewplace(name, image) {
+  const newplaceCard = newPlaceTemplate
+    .cloneNode(true)
+    .content.querySelector(".elements__card");
+  const newplaceImage = newplaceCard.querySelector(".card__image");
+  const newplaceName = newplaceCard.querySelector(".card__content-text");
+  const cardLike = newplaceCard.querySelector(".card__content-like");
+  newplaceImage.src = image;
+  newplaceName.textContent = name;
+  cardsContainer.append(newplaceCard);
+  cardLike.addEventListener("click", function () {
+    cardLike.classList.toggle("card__content_like-active");
+  });
+
+  //eliminar carta
+  const cardTrash = newplaceCard.querySelector(".card__trash");
+  cardTrash.addEventListener("click", function () {
+    newplaceCard.remove();
+  });
+
+  // abrir imagen NO FUNCONA
+  const popupImage = document.querySelector(".popup__image");
+  // popupImage.addEventListener("click", function () {
+  //   newplaceImage.classList.add("popup_opened");
+  // });
+
+  console.log(newplaceCard);
+}
+
+cardsInitials();
 
 editButton.addEventListener("click", handleOpenPopup);
 formProfile.addEventListener("submit", handleChangeProfile);
-popupCloseButton.addEventListener("click", function () {
-  closePopup();
+popupProfileCloseButton.addEventListener("click", function () {
+  closePopupProfile();
+});
+
+createNewPlaceButton.addEventListener("click", function () {
+  popupNewPlace.classList.add("popup_opened");
+});
+
+formNewPlace.addEventListener("submit", function (evt) {
+  evt.preventDefault();
+  createNewplace(inputPlaceName.value, inputPlaceImage.value);
+  popupNewPlace.classList.remove("popup_opened");
+});
+
+function closePopupNewplace() {
+  popupNewPlace.classList.remove("popup_opened");
+}
+popupNewPlaceCloseButton.addEventListener("click", function () {
+  closePopupNewplace();
 });

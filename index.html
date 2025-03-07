@@ -47,14 +47,16 @@
           </button>
         </section>
 
-        <!-- Inicio formulario pop up-->
-        <div class="popup">
-          <form class="form">
+        <!-- Inicio formulario pop up perfil-->
+
+        <div class="popup" id="popup-profile">
+          <form class="form" id="form-profile">
             <h2 class="form__title">Editar perfil</h2>
             <input
               class="form__text-input form__text-input_name"
               type="text"
               placeholder="Nombre"
+              id="input-profile-name"
             />
             <input
               class="form__text-input form__text-input_description"
@@ -62,7 +64,7 @@
               placeholder="Acerca de mi"
             />
             <button class="form__submit" type="submit">Guardar</button>
-            <button class="popup__close" type="button">
+            <button class="popup__close" type="button" id="popup-profile-close">
               <img
                 src="images/icon_close.svg"
                 alt="X icon to close the form."
@@ -71,113 +73,76 @@
           </form>
         </div>
 
-        <!-- Fin formulario pop up -->
+        <!-- Fin formulario pop up perfil-->
+
+        <!-- Inicio formulario pop up nuevo lugar-->
+
+        <div class="popup" id="popup-new-place">
+          <form class="form" id="form-new-place">
+            <h2 class="form__title">Nuevo lugar</h2>
+            <input
+              class="form__text-input form__text-input_name"
+              type="text"
+              placeholder="Título"
+              id="input-place-name"
+            />
+            <input
+              class="form__place-image"
+              type="text"
+              placeholder="Enlace a la imagen"
+              id="input-place-image"
+            />
+            <button class="form__submit" type="submit">Crear</button>
+            <button
+              class="popup__close"
+              type="button"
+              id="popup-newplace-close"
+            >
+              <img
+                src="images/icon_close.svg"
+                alt="X icon to close the form."
+              />
+            </button>
+          </form>
+          <!-- Fin formulario pop up nuevo lugar-->
+
+          <!-- Inicio popup expansion imagen -->
+
+          <div class="popup" id="image-expansion">
+            <img class="popup__image" src="" alt="Photo of place" />
+            <button class="popup__close" type="button" id="popup-image-close">
+              <img
+                src="images/icon_close.svg"
+                alt="X icon to close the form."
+              />
+            </button>
+          </div>
+
+          <!-- Fin popup expansion imagen -->
+        </div>
 
         <section class="elements">
-          <div class="card elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_valle_yosemite.jpg"
-              alt="Photo of Valle de Yosemite"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">Valle de Yosemite</p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
+          <!-- Inicio template-->
+
+          <template id="newplace-template">
+            <div class="elements__card">
+              <img class="card__image" src="" alt="Photo of place" />
+
+              <img
+                class="card__trash"
+                src="images/icon_trash.svg"
+                alt="Trash icon"
+              />
+
+              <div class="card__content">
+                <p class="card__content-text">new place</p>
+
+                <button class="card__content-like" id="like-inactive"></button>
+              </div>
             </div>
-          </div>
-          <div class="elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_lago_louise.jpg"
-              alt="Photo of Lago Louise"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">Lago Louise</p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_montañas_calvas.jpg"
-              alt="Photo of Montañas Calvas"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">Montañas Calvas</p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_latermar.jpg"
-              alt="Photo of Latemar"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">Latemar</p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_vanoise.jpg"
-              alt="Photo of Vanoise National Park"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">
-                Vanois National Park
-              </p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
-            </div>
-          </div>
-          <div class="elements__card">
-            <img
-              class="card__image"
-              src="images/card_image_lago_di_braies.jpg"
-              alt="Photo of Lago di Braies"
-            />
-            <div class="card__content">
-              <p class="card__content card__content_text">Lago di Braies</p>
-              <a href="#"
-                ><img
-                  class="card__content card__content_like"
-                  src="images/icon_heart.svg"
-                  alt="Heart icon"
-                />
-              </a>
-            </div>
-          </div>
+          </template>
+
+          <!-- Fin template-->
         </section>
       </main>
 
