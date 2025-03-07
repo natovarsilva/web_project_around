@@ -25,7 +25,6 @@
   border-radius: 10px 10px 0 0;
   width: 282px;
   height: 282px;
-  cursor: pointer;
 }
 
 .card__content {
@@ -71,6 +70,7 @@
   right: 10px;
   top: 10px;
   z-index: 0;
+  cursor: pointer;
 }
 
 .card__trash:hover {

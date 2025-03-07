@@ -16,9 +16,6 @@ const popupNewPlaceCloseButton = document.querySelector(
 const inputPlaceName = document.querySelector("#input-place-name");
 const inputPlaceImage = document.querySelector("#input-place-image");
 const formNewPlace = document.querySelector("#form-new-place");
-const deleteCard = document.querySelector(".card__trash"); //eliminar tarjeta?
-const popupImage = document.querySelector(".popup__image");
-const popupImageClose = document.querySelector("#popup-image-close");
 
 function handleOpenPopup() {
   popupProfile.classList.add("popup_opened");
@@ -89,10 +86,12 @@ function createNewplace(name, image) {
   });
 
   // abrir imagen NO FUNCONA
-  const popupImage = document.querySelector(".popup__image");
-  // popupImage.addEventListener("click", function () {
-  //   newplaceImage.classList.add("popup_opened");
-  // });
+  // const popupImage = document.querySelector(".popup__image");
+  const popupImage = document.querySelector("#image-expansion");
+  const popupImageClose = document.querySelector("#popup-image-close");
+  newplaceImage.addEventListener("click", function () {
+    popupImage.classList.add("popup_opened");
+  });
 
   console.log(newplaceCard);
 }
