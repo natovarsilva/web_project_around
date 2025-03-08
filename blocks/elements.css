@@ -77,22 +77,6 @@
   opacity: 0.5;
 }
 
-/* Image popup */
-/* .image_close {
-  border: none;
-  position: absolute;
-  cursor: pointer;
-  right: -50px;
-  width: 40px;
-  height: 40px;
-  background-color: rgba(0, 0, 0, 0);
-  top: -50px;
-}
-
-.image_opened {
-  display: flex;
-} */
-
 @media screen and (max-width: 1000px) {
   .elements {
     max-width: 768px;

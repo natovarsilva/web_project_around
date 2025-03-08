@@ -85,12 +85,21 @@ function createNewplace(name, image) {
     newplaceCard.remove();
   });
 
-  // abrir imagen NO FUNCONA
-  // const popupImage = document.querySelector(".popup__image");
-  const popupImage = document.querySelector("#image-expansion");
+  // ampliar imagen
+  const popupImage = document.querySelector(".popup__image");
+  const imageExpansion = document.querySelector("#image-expansion");
   const popupImageClose = document.querySelector("#popup-image-close");
   newplaceImage.addEventListener("click", function () {
-    popupImage.classList.add("popup_opened");
+    imageExpansion.classList.add("popup_opened");
+    popupImage.src = image;
+  });
+
+  // cerrar imagen ampliada
+  function closeImageExpansion() {
+    imageExpansion.classList.remove("popup_opened");
+  }
+  popupImageClose.addEventListener("click", function () {
+    closeImageExpansion();
   });
 
   console.log(newplaceCard);
