@@ -87,11 +87,13 @@ function createNewplace(name, image) {
 
   // ampliar imagen
   const popupImage = document.querySelector(".popup__image");
+  const popupImageName = document.querySelector(".popup__image-name");
   const imageExpansion = document.querySelector("#image-expansion");
   const popupImageClose = document.querySelector("#popup-image-close");
   newplaceImage.addEventListener("click", function () {
     imageExpansion.classList.add("popup_opened");
     popupImage.src = image;
+    popupImageName.src = name; //agregar el text content mismo proceso de la imagen
   });
 
   // cerrar imagen ampliada
@@ -129,3 +131,28 @@ function closePopupNewplace() {
 popupNewPlaceCloseButton.addEventListener("click", function () {
   closePopupNewplace();
 });
+
+// agregar keydown
+// eventTarget.addEventListener("keydown", (event) => {
+//   if (event.popupNewPlace || event.keyCode === 27) {
+//     return;
+//   }
+//   popupNewPlace.classList.remove("popup_opened");
+// });
+//---
+function keyHandler(evt) {
+  if (evt.keyCode === 27) {
+    popupNewPlace.classList.remove("popup_opened");
+  }
+  console.log(evt.key);
+}
+
+// salir del popup al hacer click afuera
+// document.addEventListener("click", (evt) => {
+//   if (!evt.target.matches(popupNewPlace)) {
+//     popupNewPlace.classList.remove("popup_opened");
+//   } if (!evt.target.matches(popupProfile)) {
+//     popupProfile.classList.remove("popup_opened");
+//   }else (!evt.target.matches(popupImage)) {
+//     popupImage.classList.remove("popup_opened");
+// }});
