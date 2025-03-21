@@ -25,7 +25,7 @@ function toggleButtonState(inputList, buttonElement) {
   if (hasInvalidInput(inputList)) {
     // proceso activar botón submit
     buttonElement.disabled = true;
-    buttonElement.classList.add("form__submit__inactive"); //crear clase en el popup y darle estilos
+    buttonElement.classList.add("form__submit_inactive"); //crear clase en el popup y darle estilos
   } else {
     //proceso desactivar botón submit
     buttonElement.disabled = false;

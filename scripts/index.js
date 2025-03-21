@@ -19,6 +19,7 @@ const formNewPlace = document.querySelector("#form-new-place");
 
 function handleOpenPopup() {
   popupProfile.classList.add("popup_opened");
+  document.addEventListener("keyup", keyHandler);
 }
 
 function closePopupProfile() {
@@ -92,8 +93,9 @@ function createNewplace(name, image) {
   const popupImageClose = document.querySelector("#popup-image-close");
   newplaceImage.addEventListener("click", function () {
     imageExpansion.classList.add("popup_opened");
+    document.addEventListener("keyup", keyHandler);
     popupImage.src = image;
-    popupImageName.src = name; //agregar el text content mismo proceso de la imagen
+    popupImageName.textContent = name;
   });
 
   // cerrar imagen ampliada
@@ -117,6 +119,7 @@ popupProfileCloseButton.addEventListener("click", function () {
 
 createNewPlaceButton.addEventListener("click", function () {
   popupNewPlace.classList.add("popup_opened");
+  document.addEventListener("keyup", keyHandler);
 });
 
 formNewPlace.addEventListener("submit", function (evt) {
@@ -132,27 +135,29 @@ popupNewPlaceCloseButton.addEventListener("click", function () {
   closePopupNewplace();
 });
 
-// agregar keydown
-// eventTarget.addEventListener("keydown", (event) => {
-//   if (event.popupNewPlace || event.keyCode === 27) {
-//     return;
-//   }
-//   popupNewPlace.classList.remove("popup_opened");
-// });
-//---
+// salir del popup al presionar esc (se debe llamar a la funcion luego de .add popup_opened en cada popup)
 function keyHandler(evt) {
-  if (evt.keyCode === 27) {
+  if (evt.key === "Escape") {
     popupNewPlace.classList.remove("popup_opened");
+    popupProfile.classList.remove("popup_opened");
+    imageExpansion.classList.remove("popup_opened");
   }
   console.log(evt.key);
 }
 
 // salir del popup al hacer click afuera
-// document.addEventListener("click", (evt) => {
-//   if (!evt.target.matches(popupNewPlace)) {
-//     popupNewPlace.classList.remove("popup_opened");
-//   } if (!evt.target.matches(popupProfile)) {
-//     popupProfile.classList.remove("popup_opened");
-//   }else (!evt.target.matches(popupImage)) {
-//     popupImage.classList.remove("popup_opened");
-// }});
+popupNewPlace.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("popup")) {
+    popupNewPlace.classList.remove("popup_opened");
+  }
+});
+popupProfile.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("popup")) {
+    popupProfile.classList.remove("popup_opened");
+  }
+});
+imageExpansion.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("popup")) {
+    imageExpansion.classList.remove("popup_opened");
+  }
+});
