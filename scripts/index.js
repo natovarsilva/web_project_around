@@ -1,3 +1,5 @@
+import Card from "./card.js";
+
 const editButton = document.querySelector(".profile__info_edit-button");
 const popupProfile = document.querySelector("#popup-profile");
 const formInputName = document.querySelector("#input-profile-name");
@@ -66,6 +68,14 @@ function cardsInitials() {
   });
 }
 
+const prueba = new Card(
+  prueba,
+  "https://www.google.com/imgres?q=google%20foto&imgurl=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPurple221%2Fv4%2Fc6%2Fdc%2Fc5%2Fc6dcc5c7-0ae0-c5a4-43f2-9597cf753080%2Flogo_photos_color-0-0-1x_U007emarketing-0-0-0-6-0-0-0-85-220.png%2F1200x630wa.png&imgrefurl=https%3A%2F%2Fapps.apple.com%2Fco%2Fapp%2Fgoogle-fotos%2Fid962194608&docid=0KqMQwbxmgLBGM&tbnid=nDc2VmnqxdAHWM&vet=12ahUKEwin1YTtrL6MAxWZL0QIHYL8MBIQM3oECGQQAA..i&w=1200&h=630&hcb=2&ved=2ahUKEwin1YTtrL6MAxWZL0QIHYL8MBIQM3oECGQQAA"
+);
+
+console.log(prueba);
+cardsContainer.append(prueba.getHtmlCard());
+//se borra y se crea el append?
 function createNewplace(name, image) {
   const newplaceCard = newPlaceTemplate
     .cloneNode(true)
