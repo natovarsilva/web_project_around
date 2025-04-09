@@ -64,60 +64,70 @@ const initialCards = [
 
 function cardsInitials() {
   initialCards.forEach((item) => {
-    createNewplace(item.name, item.link);
+    // createNewPlace(item.name, item.link); //modificar para que se creen las tarjetas de arriba (desde la 71)
+    const newCard = new Card(item.name, item.link, openImagePopup);
+    cardsContainer.append(newCard.getHtmlCard());
   });
 }
 
-const prueba = new Card(
-  prueba,
-  "https://www.google.com/imgres?q=google%20foto&imgurl=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPurple221%2Fv4%2Fc6%2Fdc%2Fc5%2Fc6dcc5c7-0ae0-c5a4-43f2-9597cf753080%2Flogo_photos_color-0-0-1x_U007emarketing-0-0-0-6-0-0-0-85-220.png%2F1200x630wa.png&imgrefurl=https%3A%2F%2Fapps.apple.com%2Fco%2Fapp%2Fgoogle-fotos%2Fid962194608&docid=0KqMQwbxmgLBGM&tbnid=nDc2VmnqxdAHWM&vet=12ahUKEwin1YTtrL6MAxWZL0QIHYL8MBIQM3oECGQQAA..i&w=1200&h=630&hcb=2&ved=2ahUKEwin1YTtrL6MAxWZL0QIHYL8MBIQM3oECGQQAA"
-);
+const popupImage = document.querySelector(".popup__image");
+const popupImageName = document.querySelector(".popup__image-name");
+const imageExpansion = document.querySelector("#image-expansion");
+const popupImageClose = document.querySelector("#popup-image-close");
+function openImagePopup(name, image) {
+  imageExpansion.classList.add("popup_opened");
+  document.addEventListener("keyup", keyHandler);
+  popupImage.src = image;
+  popupImageName.textContent = name;
+}
 
-console.log(prueba);
-cardsContainer.append(prueba.getHtmlCard());
+// cerrar imagen ampliada
+function closeImageExpansion() {
+  imageExpansion.classList.remove("popup_opened");
+}
+popupImageClose.addEventListener("click", function () {
+  closeImageExpansion();
+});
 //se borra y se crea el append?
-function createNewplace(name, image) {
-  const newplaceCard = newPlaceTemplate
-    .cloneNode(true)
-    .content.querySelector(".elements__card");
-  const newplaceImage = newplaceCard.querySelector(".card__image");
-  const newplaceName = newplaceCard.querySelector(".card__content-text");
-  const cardLike = newplaceCard.querySelector(".card__content-like");
-  newplaceImage.src = image;
-  newplaceName.textContent = name;
-  cardsContainer.append(newplaceCard);
-  cardLike.addEventListener("click", function () {
-    cardLike.classList.toggle("card__content_like-active");
-  });
+// function createNewPlace(name, image) {
+//   const newplaceCard = newPlaceTemplate
+//     .cloneNode(true)
+//     .content.querySelector(".elements__card");
+//   const newplaceImage = newplaceCard.querySelector(".card__image");
+//   const newplaceName = newplaceCard.querySelector(".card__content-text");
+//   const cardLike = newplaceCard.querySelector(".card__content-like");
+//   newplaceImage.src = image;
+//   newplaceName.textContent = name;
+//   cardsContainer.append(newplaceCard);
+//   cardLike.addEventListener("click", function () {
+//     cardLike.classList.toggle("card__content_like-active");
+//   });
 
-  //eliminar carta
-  const cardTrash = newplaceCard.querySelector(".card__trash");
-  cardTrash.addEventListener("click", function () {
-    newplaceCard.remove();
-  });
+//   //eliminar carta
+//   const cardTrash = newplaceCard.querySelector(".card__trash");
+//   cardTrash.addEventListener("click", function () {
+//     newplaceCard.remove();
+//   });
 
-  // ampliar imagen
-  const popupImage = document.querySelector(".popup__image");
-  const popupImageName = document.querySelector(".popup__image-name");
-  const imageExpansion = document.querySelector("#image-expansion");
-  const popupImageClose = document.querySelector("#popup-image-close");
-  newplaceImage.addEventListener("click", function () {
-    imageExpansion.classList.add("popup_opened");
-    document.addEventListener("keyup", keyHandler);
-    popupImage.src = image;
-    popupImageName.textContent = name;
-  });
+//   // ampliar imagen
+//   //mantener de aqui en adelante
+//   newplaceImage.addEventListener("click", function () {
+//     imageExpansion.classList.add("popup_opened");
+//     document.addEventListener("keyup", keyHandler);
+//     popupImage.src = image;
+//     popupImageName.textContent = name;
+//   });
 
-  // cerrar imagen ampliada
-  function closeImageExpansion() {
-    imageExpansion.classList.remove("popup_opened");
-  }
-  popupImageClose.addEventListener("click", function () {
-    closeImageExpansion();
-  });
+//   // cerrar imagen ampliada
+//   function closeImageExpansion() {
+//     imageExpansion.classList.remove("popup_opened");
+//   }
+//   popupImageClose.addEventListener("click", function () {
+//     closeImageExpansion();
+//   });
 
-  console.log(newplaceCard);
-}
+//   console.log(newplaceCard);
+// }
 
 cardsInitials();
 
@@ -134,7 +144,7 @@ createNewPlaceButton.addEventListener("click", function () {
 
 formNewPlace.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  createNewplace(inputPlaceName.value, inputPlaceImage.value);
+  createNewPlace(inputPlaceName.value, inputPlaceImage.value);
   popupNewPlace.classList.remove("popup_opened");
 });
 
