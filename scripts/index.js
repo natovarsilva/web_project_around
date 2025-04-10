@@ -144,7 +144,8 @@ createNewPlaceButton.addEventListener("click", function () {
 
 formNewPlace.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  createNewPlace(inputPlaceName.value, inputPlaceImage.value);
+  const newCard = new Card(inputPlaceName.value, inputPlaceImage.value);
+  cardsContainer.prepend(newCard.getHtmlCard());
   popupNewPlace.classList.remove("popup_opened");
 });
 
@@ -162,7 +163,6 @@ function keyHandler(evt) {
     popupProfile.classList.remove("popup_opened");
     imageExpansion.classList.remove("popup_opened");
   }
-  console.log(evt.key);
 }
 
 // salir del popup al hacer click afuera

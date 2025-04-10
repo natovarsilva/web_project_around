@@ -13,7 +13,7 @@ export default class Card {
   generateCard() {
     this.card = this.cloneTemplate();
     this.cardTitle = this.card.querySelector(".card__content-text");
-    console.log(this.card);
+    // console.log(this.card);
     this.cardImage = this.card.querySelector(".card__image");
     this.cardImage.src = this.link; // confirmar si está bien
     this.cardImage.alt = this.name;

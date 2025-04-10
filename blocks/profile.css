@@ -14,6 +14,7 @@
 .profile__info {
   color: white;
   font-family: "inter";
+  text-overflow: ellipsis;
 }
 
 .profile__info-name {
@@ -21,6 +22,10 @@
   font-size: 42px;
   display: inline-block;
   margin-bottom: 16px;
+  text-overflow: ellipsis;
+  max-width: 373px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__info_edit-button {
@@ -40,10 +45,13 @@
 }
 
 .profile__info_description {
+  max-width: 373px;
   font-weight: 400;
   font-size: 18px;
   margin: 0;
-  display: flex;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .profile__add-button {
