@@ -6,6 +6,6 @@ El proyecto se continuó en el sprint 8. Se incluyó el formulario para agregar 
 
 En el sprint 9 se agregaron principalmente las validaciones de los formularios.
 
-EN el sprint 10 se aplicó la programación orientada a objetos.
+En el sprint 10 y 11 se aplicó la programación orientada a objetos.
 
 https://natovarsilva.github.io/web_project_around/
