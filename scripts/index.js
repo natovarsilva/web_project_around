@@ -3,6 +3,7 @@ import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
 // import UserInfo from "./UserInfo.js";
+import api from "./Api.js";
 
 const editButton = document.querySelector(".profile__info_edit-button");
 const formInputName = document.querySelector("#input-profile-name");
@@ -25,6 +26,9 @@ const formNewPlace = document.querySelector("#form-new-place");
 const popupProfile = new PopupWithForm("#popup-profile", () => {});
 const popupNewPlace = new PopupWithForm("#popup-new-place", () => {
   // createCard();
+  api.createCard(data.name, data.link).then(function (card) {
+    //llamar al método que crea cartas en html
+  });
 });
 
 popupProfile.setEventListeners();
@@ -71,21 +75,6 @@ const initialCards = [
   },
 ];
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const newCard = new Card(item.name, item.link, () => {
-        popupImage.open(item.link, item.name);
-      });
-      cardSection.addItem(newCard.getHtmlCard());
-    },
-  },
-  ".elements"
-); //".elements" es la seccion en HTML donde están las cartas
-
-cardSection.renderItems();
-
 const popupImage = new PopupWithImage("#image-expansion");
 popupImage.setEventListeners();
 
@@ -121,4 +110,26 @@ function closePopupNewplace() {
 }
 popupNewPlaceCloseButton.addEventListener("click", function () {
   closePopupNewplace();
+});
+
+api.getUserInfo().then(function (user) {
+  console.log("usuario obtenido", user); // BORRAR
+  // userInfo.setUserInfo({ name: user.name, description: user.about });
+});
+
+api.getInitialCards().then(function (initialCards) {
+  console.log("lista de cartas", initialCards); // sale, pero no la info de las cartas, BORRAR
+  const cardSection = new Section(
+    {
+      items: initialCards,
+      renderer: (item) => {
+        const newCard = new Card(item.name, item.link, () => {
+          popupImage.open(item.link, item.name);
+        });
+        cardSection.addItem(newCard.getHtmlCard());
+      },
+    },
+    ".elements"
+  ); //".elements" es la seccion en HTML donde están las cartas
+  cardSection.renderItems();
 });
