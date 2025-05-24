@@ -7,7 +7,7 @@
     <meta name="description" content="Proyecto 7, web project around" />
     <meta name="author" content="Natalia Tovar" />
     <meta name="keywords" content="Responsive, HTML, CSS" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="stylesheet" href="../pages/index.css" />
   </head>
 
   <body>
@@ -15,35 +15,38 @@
       <header class="header">
         <img
           class="header__logo"
-          src="images/header_logo_svg.svg"
+          src="../images/header_logo_svg.svg"
           alt="Around The U.S. logo"
         />
         <img
           class="header__line"
-          src="images/header_line.png"
+          src="../images/header_line.png"
           alt="Division line"
         />
       </header>
 
       <main class="content">
         <section class="profile">
-          <img
-            class="profile__image"
-            src="images/profile_image.jpg"
-            alt="Jacques Cousteau image"
-          />
+          <div class="profile__image-wrapper">
+            <img
+              class="profile__image"
+              src="../images/profile_image.jpg"
+              alt="Jacques Cousteau image"
+            />
+            <img class="profile__edit-icon" src="../images/edit_avatar_icon.svg" alt="Edit avatar">
+          </div>
           <div class="profile__info">
             <h1 class="profile__info-name">Jacques Cousteau</h1>
             <a href="#"
               ><img
                 class="profile__info profile__info_edit-button"
-                src="images/profile_edit_button.svg"
+                src="../images/profile_edit_button.svg"
                 alt="Pencil icon, referencing you can edit"
             /></a>
             <p class="profile__info profile__info_description">Explorador</p>
           </div>
           <button class="profile__add-button">
-            <img src="images/icon_add.svg" alt="Icon +" />
+            <img src="../images/icon_add.svg" alt="Icon +" />
           </button>
         </section>
 
@@ -82,7 +85,7 @@
             </button>
             <button class="popup__close" type="button" id="popup-profile-close">
               <img
-                src="images/icon_close.svg"
+                src="../images/icon_close.svg"
                 alt="X icon to close the form."
               />
             </button>
@@ -90,6 +93,38 @@
         </div>
 
         <!-- Fin formulario pop up perfil-->
+
+        <!--REVISAR Y AGREGAR A CSS, revisar mensajes de error -->
+        <!-- Inicio popup cambiar foto de perfil -->
+
+        <div class="popup" id="update-avatar">
+          <form class="form" id="form-update-avatar">
+            <h2 class="form__title">Cambiar foto de perfil</h2>
+            </button>
+            <input
+              class="form__text-input form__avatar-image"
+              type="url"
+              placeholder="Enlace a la imagen"
+              id="input-avatar-image"
+              name="input-avatar-image"
+              required
+            />
+            <span id="input-avatar-image-error" class="form__error-msg"></span>
+             <button class="form__submit form__submit_inactive" type="submit">
+              Guardar
+            <button
+              class="popup__close"
+              type="button"
+              id="popup-updateavatar-close"
+            >
+              <img
+                src="../images/icon_close.svg"
+                alt="X icon to close the form."
+              />
+            </button>
+          </form>
+        </div>
+        <!-- Fin popup cambiar foto de perfil -->
 
         <!-- Inicio formulario pop up nuevo lugar-->
 
@@ -125,7 +160,7 @@
               id="popup-newplace-close"
             >
               <img
-                src="images/icon_close.svg"
+                src="../images/icon_close.svg"
                 alt="X icon to close the form."
               />
             </button>
@@ -141,7 +176,7 @@
             <h3 class="popup__image-name"></h3>
             <button class="popup__close" type="button" id="popup-image-close">
               <img
-                src="images/icon_close.svg"
+                src="../images/icon_close.svg"
                 alt="X icon to close the form."
               />
             </button>
@@ -149,6 +184,28 @@
         </div>
 
         <!-- Fin popup expansion imagen -->
+
+        <!-- Inicio popup borrar tarjeta -->
+
+        <div class="popup" id="delete-card">
+          <form class="form form__confirmation" id="form-delete-card">
+            <h2 class="form__title">¿Estás seguro?</h2>
+            <button class="form__submit" type="submit">
+              Si
+            </button>
+            <button
+              class="popup__close"
+              type="button"
+              id="popup-deletecard-close"
+            >
+              <img
+                src="../images/icon_close.svg"
+                alt="X icon to close the form."
+              />
+            </button>
+          </form>
+        </div>
+        <!-- Fin popup borrar tarjeta -->
 
         <section class="elements">
           <!-- Inicio template-->
@@ -159,7 +216,7 @@
 
               <img
                 class="card__trash"
-                src="images/icon_trash.svg"
+                src="../images/icon_trash.svg"
                 alt="Trash icon"
               />
 
@@ -176,11 +233,11 @@
       </main>
 
       <footer class="footer">
-        <p class="footer__copyright">© 2024 Around The U.S.</p>
+        <p class="footer__copyright">© 2025 Natalia Tovar S.</p>
       </footer>
     </div>
 
-    <script src="./scripts/index.js" type="module"></script>
-    <script src="./scripts/validate.js"></script>
+    <script src="../scripts/index.js" type="module"></script>
+    <script src="../scripts/validate.js"></script>
   </body>
 </html>

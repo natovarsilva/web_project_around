@@ -8,6 +8,6 @@ En el sprint 9 se agregaron principalmente las validaciones de los formularios.
 
 En el sprint 10 y 11 se aplicó la programación orientada a objetos.
 
-En el sprint 12 se incluyó el uso de APIs.
+En el sprint 12 se incluyó el uso de APIs, la posibilidad de editar la foto de perfil, se incluyó el popup de confirmación para eliminar las tarjetas.
 
 https://natovarsilva.github.io/web_project_around/

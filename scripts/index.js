@@ -2,8 +2,9 @@ import Card from "./card.js";
 import Section from "./Section.js";
 import PopupWithForm from "./PopupWithForm.js";
 import PopupWithImage from "./PopupWithImage.js";
-// import UserInfo from "./UserInfo.js";
+import UserInfo from "./UserInfo.js";
 import api from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 
 const editButton = document.querySelector(".profile__info_edit-button");
 const formInputName = document.querySelector("#input-profile-name");
@@ -22,58 +23,93 @@ const inputPlaceName = document.querySelector("#input-place-name");
 const inputPlaceImage = document.querySelector("#input-place-image");
 const formNewPlace = document.querySelector("#form-new-place");
 
-// Popups
-const popupProfile = new PopupWithForm("#popup-profile", () => {});
-const popupNewPlace = new PopupWithForm("#popup-new-place", () => {
-  // createCard();
-  api.createCard(data.name, data.link).then(function (card) {
-    //llamar al método que crea cartas en html
-  });
+// POPUPS
+
+// Instancia para actualizar el avatar del usuario
+
+const popupProfile = new PopupWithForm("#popup-profile", () => {
+  return api
+    .updateUserProfile(formInputName.value, formInputDesc.value)
+    .then(function () {
+      profileName.textContent = formInputName.value;
+      profileDesc.textContent = formInputDesc.value;
+      // 👀 CONFIRMAR userInfo.setUserInfo({ name: data.name, about: data.about });
+    })
+    .catch(function (err) {
+      console.error("Error al actualizar perfil:", err);
+    });
 });
+
+//Agregar una nueva tarjeta
+const popupNewPlace = new PopupWithForm("#popup-new-place", () => {
+  const name = inputPlaceName.value;
+  const link = inputPlaceImage.value;
+
+  return api
+    .createCard(name, link)
+    .then(function (cardData) {
+      const newCard = new Card(
+        cardData.name,
+        cardData.link,
+        cardData.id,
+        () => {
+          popupImage.open(cardData.link, cardData.name);
+        },
+        api,
+        () => {
+          popupDeleteCard.open(newCard);
+        }
+      );
+      cardsContainer.prepend(newCard.getHtmlCard());
+    })
+    .catch(function (err) {
+      console.error("Error al crear tarjeta:", err);
+    });
+});
+
+// Instancia cambiar de avatar
+const profileImage = document.querySelector(".profile__image");
+const popupUpdateAvatar = new PopupWithForm("#update-avatar", () => {
+  const avatarUrl = document.querySelector("#input-avatar-image").value;
+
+  return api
+    .updateAvatar(avatarUrl)
+    .then(() => {
+      document.querySelector(".profile__image").src = avatarUrl;
+    })
+    .catch((err) => {
+      console.error("Error al actualizar avatar:", err);
+    });
+});
+
+popupUpdateAvatar.setEventListeners();
+
+profileImage.addEventListener("click", () => {
+  popupUpdateAvatar.open();
+});
+
+// Instancia popup para eliminar tarjeta
+const popupDeleteCard = new PopupWithConfirmation("#delete-card", () => {
+  if (popupDeleteCard.cardToDelete) {
+    const cardId = popupDeleteCard.cardToDelete.cardId;
+    api.deleteCard(cardId).then(() => {
+      popupDeleteCard.cardToDelete.removeFromPage();
+      popupDeleteCard.cardToDelete = null;
+    });
+  }
+});
+
+popupDeleteCard.setEventListeners();
 
 popupProfile.setEventListeners();
 popupNewPlace.setEventListeners();
 
-// //  Instancias de clases
-// const userInfo = new UserInfo({
-//   nameSelector: ".profile__name",
-//   hobbieSelector: ".profile__hobbie",
-//   avatarSelector: ".profile__avatar",
-// });
-
-function handleChangeProfile(evt) {
-  evt.preventDefault();
-  profileName.textContent = formInputName.value;
-  profileDesc.textContent = formInputDesc.value;
-  popupProfile.classList.remove("popup_opened");
-}
-
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
+//  Instancias de clases
+const userInfo = new UserInfo({
+  nameSelector: ".profile__info-name",
+  hobbieSelector: ".profile__info_description",
+  avatarSelector: ".profile__image",
+});
 
 const popupImage = new PopupWithImage("#image-expansion");
 popupImage.setEventListeners();
@@ -91,19 +127,12 @@ popupImageClose.addEventListener("click", function () {
 });
 
 editButton.addEventListener("click", () => popupProfile.open());
-formProfile.addEventListener("submit", handleChangeProfile);
+// formProfile.addEventListener("submit", handleChangeProfile);
 popupProfileCloseButton.addEventListener("click", function () {
   closePopupProfile();
 });
 
 createNewPlaceButton.addEventListener("click", () => popupNewPlace.open());
-
-formNewPlace.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-  const newCard = new Card(inputPlaceName.value, inputPlaceImage.value);
-  cardsContainer.prepend(newCard.getHtmlCard());
-  popupNewPlace.classList.remove("popup_opened");
-});
 
 function closePopupNewplace() {
   popupNewPlace.classList.remove("popup_opened");
@@ -112,20 +141,38 @@ popupNewPlaceCloseButton.addEventListener("click", function () {
   closePopupNewplace();
 });
 
-api.getUserInfo().then(function (user) {
-  console.log("usuario obtenido", user); // BORRAR
-  // userInfo.setUserInfo({ name: user.name, description: user.about });
-});
+//Cargar la información del usuario desde el servidor
+api
+  .getUserInfo()
+  .then(function (user) {
+    userInfo.setUserInfo({
+      name: user.name,
+      about: user.about,
+      avatar: user.avatar,
+    });
+  })
+  .catch(function (err) {
+    console.error("Error al cargar información del usuario:", err);
+  });
 
+// Crear tarjetas 👀 CONFIRMAR CÓDIGO
 api.getInitialCards().then(function (initialCards) {
-  console.log("lista de cartas", initialCards); // sale, pero no la info de las cartas, BORRAR
   const cardSection = new Section(
     {
       items: initialCards,
       renderer: (item) => {
-        const newCard = new Card(item.name, item.link, () => {
-          popupImage.open(item.link, item.name);
-        });
+        const newCard = new Card(
+          item.name,
+          item.link,
+          item._id,
+          () => {
+            popupImage.open(item.link, item.name);
+          },
+          api,
+          () => {
+            popupDeleteCard.open(newCard);
+          }
+        );
         cardSection.addItem(newCard.getHtmlCard());
       },
     },

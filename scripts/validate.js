@@ -1,6 +1,3 @@
-// habilitar la validación llamando a enableValidation()
-// pasar todas las configuraciones en la llamada
-
 function enableValidation(settings) {
   const formElement = document.querySelector(settings.formSelector);
   const inputList = Array.from(
@@ -72,6 +69,15 @@ enableValidation({
 
 enableValidation({
   formSelector: "#form-new-place", // se usa el id porque si hay dos forms con la misma clase, solo se va a tomar el primero siempre
+  inputSelector: ".form__text-input",
+  submitButtonSelector: ".form__submit",
+  inactiveButtonClass: "form__submit_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__error_visible",
+});
+
+enableValidation({
+  formSelector: "#form-update-avatar", // se usa el id porque si hay dos forms con la misma clase, solo se va a tomar el primero siempre
   inputSelector: ".form__text-input",
   submitButtonSelector: ".form__submit",
   inactiveButtonClass: "form__submit_disabled",

@@ -1,9 +1,9 @@
 import Popup from "./Popup.js";
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithConfirmation extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._popupForm = this._popupElement.querySelector(".form");
+    this._popupForm = this._popupElement.querySelector("#form-delete-card");
     this._handleFormSubmit = handleFormSubmit;
   }
   setEventListeners() {
@@ -14,9 +14,8 @@ export default class PopupWithForm extends Popup {
       this.close(); // cierra de una vez el popup
     });
   }
-
-  close() {
-    super.close();
-    this._popupForm.reset();
+  open(cardToDelete) {
+    super.open();
+    this.cardToDelete = cardToDelete;
   }
 }
