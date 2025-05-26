@@ -28,13 +28,16 @@ const formNewPlace = document.querySelector("#form-new-place");
 // Instancia para actualizar el avatar del usuario
 
 const popupProfile = new PopupWithForm("#popup-profile", () => {
+  const name = formInputName.value;
+  const description = formInputDesc.value;
   return api
-    .updateUserProfile(formInputName.value, formInputDesc.value)
+    .updateUserProfile(name, description)
     .then(function () {
-      profileName.textContent = formInputName.value;
-      profileDesc.textContent = formInputDesc.value;
+      profileName.textContent = name;
+      profileDesc.textContent = description;
       // 👀 CONFIRMAR userInfo.setUserInfo({ name: data.name, about: data.about });
     })
+
     .catch(function (err) {
       console.error("Error al actualizar perfil:", err);
     });
